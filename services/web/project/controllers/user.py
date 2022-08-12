@@ -12,7 +12,7 @@ def user_signup():
     uname = data["uname"].strip()
     upass = data["upass"].strip()
 
-    user = database.get_by_field(User, email=email)
+    user = database.get_filter_by(User, email=email)
 
     if user:
         return jsonify(error="Email already exists"), 403
@@ -29,7 +29,7 @@ def user_signin():
     email = data["email"].strip().lower()
     upass = data["upass"].strip()
 
-    user = database.get_by_field(User, email=email)
+    user = database.get_filter_by(User, email=email)
 
     if not user:
         return jsonify(error="No User Found"), 404
@@ -55,7 +55,7 @@ def refresh_auth_token():
     if decode_response["token_type"] != "refresh":
         return jsonify(error="Please Provide a refresh token"), 403
 
-    user = database.get_by_field(User, id=decode_response["sub"])
+    user = database.get_filter_by(User, id=decode_response["sub"])
 
     if not user:
         return jsonify(error="Token is Malformed")

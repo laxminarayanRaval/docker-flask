@@ -25,7 +25,7 @@ class User(db.Model):
     is_active = Column(Boolean(), default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
-    projects = db.relationship("Projects", backref="projects", lazy=True)
+    # projects = db.relationship("Projects", backref="projects", lazy=True)
 
     def __init__(self, email, uname, upass):
         self.email = email

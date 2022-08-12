@@ -16,8 +16,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_URER=docker_lx
-      - POSTGRES_PASSWORD=flask_lx
+      - POSTGRES_USER=docker_flask
+      - POSTGRES_PASSWORD=docker_flask
       - POSTGRES_db=docker_flask
 
 volumes:
