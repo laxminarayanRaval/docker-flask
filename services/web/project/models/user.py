@@ -45,7 +45,7 @@ class User(db.Model):
     def set_password(self, upass):
         """Creates a Secure Hash Password"""
         if len(upass) < 6:
-            raise ValueError(f"{upass} must be at least 6 characters long")
+            raise ValueError(f"Password lenth is {len(upass)} and it must be at least 6 characters long")
         self.upass = generate_password_hash(upass, method="sha256")
 
     def check_password(self, upass):

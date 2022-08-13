@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  testing:
+    build: ./services/web/tests/
+    networks:
+      - web
+
+networks:
+  web:
+    name: docker_flask
+    driver: bridge

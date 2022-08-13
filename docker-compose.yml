@@ -10,6 +10,8 @@ services:
     command: python manage.py run -h 0.0.0.0
     ports:
       - 5000:5000
+    networks:
+      - web
     entrypoint: ./entrypoint.sh
   db:
     image: postgres:14-bullseye
@@ -19,6 +21,13 @@ services:
       - POSTGRES_USER=docker_flask
       - POSTGRES_PASSWORD=docker_flask
       - POSTGRES_db=docker_flask
+    networks:
+      - web
 
 volumes:
   postgres_data:
+
+networks:
+  web:
+    name: docker_flask
+    internal: true
