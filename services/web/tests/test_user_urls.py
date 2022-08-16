@@ -7,8 +7,6 @@ base_url = os.environ.get("BASE_URL", "http://web:5000")  # "docker-flask_defaul
 
 def test_root_url():
     print(base_url)
-    assert 1 != 2
-    assert base_url == "http://web:5000"
     response = requests.get(base_url)
     response_body = response.json()
     assert (

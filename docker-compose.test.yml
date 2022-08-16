@@ -3,10 +3,12 @@ version: "3.8"
 services:
   testing:
     build: ./services/web/tests/
+    env_file:
+      - ./.env
     networks:
-      - web
+      - web_network
+    entrypoint: pytest test_user_urls.py
 
 networks:
-  web:
+  web_network:
     name: docker_flask
-    driver: bridge

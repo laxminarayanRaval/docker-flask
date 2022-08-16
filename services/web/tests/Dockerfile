@@ -16,7 +16,6 @@ RUN pip install --upgrade pip
 RUN pip install pytest requests
 
 COPY . /usr/src/app/test/
-
-RUN pytest -k test_root_url
+ 
 # entrypoint bash script
-# ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# ENTRYPOINT ["/usr/src/app/test/entrypoint.sh"]

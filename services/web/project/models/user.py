@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "SOME_SECRET_KEY")
 
 
 class User(db.Model):
-    """User Model for storing user information."""
+    """User Model for Handling user information."""
 
     __tablename__ = "users"
 

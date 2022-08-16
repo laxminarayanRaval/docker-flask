@@ -11,7 +11,7 @@ services:
     ports:
       - 5000:5000
     networks:
-      - web
+      - web_network
     entrypoint: ./entrypoint.sh
   db:
     image: postgres:14-bullseye
@@ -22,12 +22,12 @@ services:
       - POSTGRES_PASSWORD=docker_flask
       - POSTGRES_db=docker_flask
     networks:
-      - web
+      - web_network
 
 volumes:
   postgres_data:
 
 networks:
-  web:
+  web_network:
     name: docker_flask
-    internal: true
+    driver: bridge
