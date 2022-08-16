@@ -6,6 +6,7 @@ from flask import jsonify
 
 from project import create_app, db
 from project.controllers.user import user_bp
+from project.controllers.projects import project_bp
 
 app = create_app()
 
@@ -19,3 +20,4 @@ def index():
     return jsonify(message="Welcome to docker-flask"), 200
 
 app.register_blueprint(user_bp, url_prefix="/user")
+app.register_blueprint(project_bp, url_prefix="/projects")
