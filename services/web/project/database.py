@@ -11,7 +11,7 @@ def get_all(model):
 
 
 def get_filter_by(model, **kwargs):
-    instance = model.query.filter_by(**kwargs).first()
+    instance = model.query.filter_by(**kwargs).all() #.first()
     return instance
 
 

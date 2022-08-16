@@ -12,7 +12,7 @@ project_bp = Blueprint("project_bp", __name__)
 def add_project(curr_user):
     data = request.get_json()
 
-    pname = data["pname"].strip()
+    project_name = data["project_name"].strip()
     sampling_type = data["sampling_type"].strip()
     description = data["description"].strip()
     instructions = data["instructions"].strip()
@@ -20,23 +20,44 @@ def add_project(curr_user):
     try:
         database.add_instance(
             Project,
-            pname=pname,
+            project_name=project_name,
             sampling_type=sampling_type,
             description=description,
             instructions=instructions,
             created_by=curr_user.id,
         )
-        return jsonify(message=f"New Project {pname} added"), 201
-    except BaseException() as e:
-        return jsonify(error="Something went wrong during Project Adding"), 406
+        return jsonify(message=f"New Project {project_name} added"), 201
+    except Exception as e:
+        return jsonify(error=f"Something went wrong during Project Adding. ({e})"), 406
 
 
 @project_bp.route("/details")
 def all_details():
+    """All Project Details."""
     try:
         data = database.get_all(Project)
         print("data", data)
         return jsonify(data=data, message="All Project Details"), 200
     except Exception as e:
         print("Error:", e)
-        return jsonify(error="Having Some Issues find Project Details"), 400
+        return jsonify(error=f"Having Some Issues find Project Details. ({e})"), 400
+
+
+@project_bp.route("/details/<int:project_id>")
+def project_details(project_id):
+    """Project Details By Id"""
+    try:
+        data = database.get_filter_by(Project, id=project_id)
+        return jsonify(data=data, message="Project Details"), 200
+    except Exception as e:
+        return jsonify(error=f"Project Details Not Found. ({e})"), 400
+
+
+@project_bp.route("/details/created_by/<int:created_by>")
+def project_details_created_by(created_by):
+    """Project Details By Id"""
+    try:
+        data = database.get_filter_by(Project, created_by=created_by)
+        return jsonify(data=data, message="Project Details"), 200
+    except Exception as e:
+        return jsonify(error=f"Project Details Not Found. ({e})"), 400
