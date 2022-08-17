@@ -7,7 +7,7 @@ services:
       - ./.env
     networks:
       - web_network
-    entrypoint: pytest test_user_urls.py
+    entrypoint: pytest
 
 networks:
   web_network:

@@ -38,6 +38,6 @@ def is_authenticated(fuc):
         if isinstance(uid, int):
             curr_user = database.get_filter_by(User, id=uid)
 
-        return fuc(curr_user, *args, **kwargs)
+        return fuc(curr_user=curr_user, *args, **kwargs)
 
     return wrapped
