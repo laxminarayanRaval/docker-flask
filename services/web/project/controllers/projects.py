@@ -76,6 +76,11 @@ def project_edit(project_id, curr_user):
 
     try:
         project_data = database.get_filter_by(Project, id=project_id)
+        if not project_data:
+            return (
+                jsonify(error="Project not found with id '{}'".format(project_id)),
+                404,
+            )
         if project_data.created_by == curr_user.id:
             database.edit_instance(
                 Project,
@@ -106,13 +111,20 @@ def project_remove(project_id, curr_user):
 
     try:
         project_data = database.get_filter_by(Project, id=project_id)
+        if not project_data:
+            return (
+                jsonify(error="Project not found with id '{}'".format(project_id)),
+                404,
+            )
         if project_data.created_by == curr_user.id:
             database.delete_instance(
                 Project,
                 id=project_id,
             )
             return (
-                jsonify(message=f"Project '{project_data.project_name}' Removed successfully"),
+                jsonify(
+                    message=f"Project '{project_data.project_name}' Removed successfully"
+                ),
                 200,
             )
         return (
