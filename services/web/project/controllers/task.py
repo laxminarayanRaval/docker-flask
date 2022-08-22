@@ -56,7 +56,7 @@ def get_task_by_project_id(project_id, curr_user):
         if project_data.created_by != curr_user.id:
             return jsonify(
                 error=f"User:({curr_user.uname}) not have rights on Project:({project_data.project_name})"
-            )
+            ), 401
 
         task_data = database.get_filter_all(Task, project_id=project_id, **args)
 
