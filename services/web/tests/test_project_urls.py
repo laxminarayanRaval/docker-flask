@@ -1,14 +1,7 @@
-import os
 import json
 import requests
 
-base_url = os.environ.get("BASE_URL", "http://web:5000")
-
-access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiaWF0IjoxNjYwNzIzNzM2LCJleHAiOjE2NjA3MjQ5MzYsInN1YiI6NCwiZW1haWwiOiJ0ZXN0LmVyQGdtYWlsLmNvbSJ9.dWxwpYMDrrKlLHdfSNYpjf9JLNBQKzRHPAy0A47OCtY"
-
-headers = {
-    "Content-Type": "application/json",
-}
+from . import base_url, headers
 
 
 def test_all_projects_details_url():

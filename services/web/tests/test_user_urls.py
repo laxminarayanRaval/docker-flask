@@ -1,9 +1,9 @@
 import requests
 import json
-import os
+# import os
 
-base_url = os.environ.get("BASE_URL", "http://web:5000")  # "docker-flask_default:5000"
-
+# base_url = os.environ.get("BASE_URL", "http://web:5000")  # "docker-flask_default:5000"
+from . import base_url
 
 def test_root_url():
     print(base_url)

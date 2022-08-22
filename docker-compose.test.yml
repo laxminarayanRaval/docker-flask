@@ -4,7 +4,7 @@ services:
   testing:
     build: ./services/web/tests/
     env_file:
-      - ./.env
+      - ./services/web/tests/.env
     networks:
       - web_network
     entrypoint: pytest
